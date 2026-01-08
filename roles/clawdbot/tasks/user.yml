@@ -9,6 +9,17 @@
     home: /home/clawdbot
     state: present
 
+- name: Add clawdbot user to sudoers with NOPASSWD
+  ansible.builtin.copy:
+    dest: /etc/sudoers.d/clawdbot
+    mode: '0440'
+    owner: root
+    group: root
+    content: |
+      # Allow clawdbot user to run sudo without password
+      clawdbot ALL=(ALL) NOPASSWD: ALL
+    validate: /usr/sbin/visudo -cf %s
+
 - name: Set clawdbot user as primary user for installation
   ansible.builtin.set_fact:
     clawdbot_user: clawdbot

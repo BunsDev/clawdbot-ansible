@@ -101,7 +101,7 @@
           echo -e "${YELLOW}Switching to clawdbot user for setup...${NC}"
           echo ""
 
-          su - clawdbot << 'SETUP_EOF'
+          sudo -u clawdbot bash --login << 'SETUP_EOF'
           echo "============================================"
           echo "📋 Clawdbot Setup - Next Steps"
           echo "============================================"
